@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>To Do</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="toDo.css">
+</head>
+<body>
+
+<div class="container">
+	<h1>To Do List</h1>
+  
+  <h4>Add a task and when it's completed <br> simply click on it</h3>
+	
+	<ol class="list">
+		<li class="ListItem">Read Prework</li>
+		<li class="ListItem">Take Quiz</li>
+		<li class="ListItem">Do Exercise</li>
+		<li class="ListItem">Present</li>
+		<li class="ListItem">Do Code Review</li>
+	</ol>
+
+	<div class="doForm">
+			<input type="text" name="item" placeholder="New Task">
+			<button id="button" type="submit">Add</button>
+	</div>
+</div>
+
+	<script type="text/javascript">
+		
+//name the function so you can call it again later
+		function takeAway(){
+			$('.ListItem').on('click', function() {
+                $(this).animate({
+                        opacity: 0.0,
+                        paddingLeft: '+=10'
+                    }, 500, function() {
+                        $(this).remove();
+                    });
+                });
+		}  
+
+    $(document).ready(function() {
+        takeAway()
+        });
+
+    $(document).ready(function(){
+        $('#button').click(
+            function(){
+                var toAdd = $('input[name=item]').val();
+                  $('ol').append('<li class="ListItem">' + toAdd + '</li>');
+                  $('input[name=item]').val("")
+                   console.log("task added");
+                   takeAway()              
+            });
+       
+       $("input[name=item]").keyup(function(event){
+          if(event.keyCode == 13){
+            $("#button").click();
+          }
+
+      });      
+    }
+);
+
+	</script>
+
+
+</body>
+</html>
